@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Character Counter</title>
+</head>
+<body style="border: solid purple 2px; padding: 15px; width: fit-content; border-radius: 10px;" >
+
+    <h2 style="color: purple; margin-top: 10px; margin-bottom: 10px;">Enter Your Message</h2>
+
+    <p>200 characters max</p>
+
+    <textarea id="message" rows="5" cols="40"
+        placeholder="Type your message..."></textarea>
+
+    <p id="counter">0/200 characters</p>
+
+    <p id="warning" style="color: red;"></p>
+
+    <script>
+        var message = document.getElementById("message");
+        var counter = document.getElementById("counter");
+        var warning = document.getElementById("warning");
+
+        var maxLength = 200;
+
+        message.addEventListener("input", function () {
+
+            var typed = message.value.length;
+
+            if (typed > maxLength) {
+                message.value = message.value.slice(0, maxLength);
+                typed = maxLength;
+                warning.textContent = "Character limit exceeded!";
+            } else {
+                warning.textContent = "";
+            }
+
+            counter.textContent =
+                typed + "/" + maxLength + " characters";
+
+            var remaining = maxLength - typed;
+
+            counter.textContent +=
+                " (" + remaining + " remaining)";
+        });
+    </script>
+
+</body>
+</html>
